@@ -1,7 +1,5 @@
 # cryptopals challenge 10
 
-import base64
-import codecs
 from Crypto.Cipher import AES
 
 def xor(a, b):
