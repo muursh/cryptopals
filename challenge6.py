@@ -17,12 +17,14 @@ letter_points = {
     'u' : 5
 }
 
+#hamm distance between strings
 def hamm(str1, str2):        
         diffs = 0
         for ch1, ch2 in zip(str1, str2):
                 if ch1 != ch2:
                         diffs += 1
         return diffs
+
     
 def score(string):
     score = 0
@@ -31,8 +33,10 @@ def score(string):
             score += letter_points[x]
     return score
 
+
 def xor(string, key):
     return ''.join(chr(ord(x) ^ key) for x in string)
+
 
 def key_guesser(keysize):
     num = (len(orig) / keysize)
@@ -44,6 +48,7 @@ def key_guesser(keysize):
     sum /= float(num)
     sum /= float(keysize)
     return sum
+
 
 with open('challenge6.txt', 'r') as f:
     orig = f.read().decode('base64')
@@ -60,5 +65,4 @@ for i in range(most_likely_size):
 key = ''.join(map(chr, key))
 
 print "Most likely key = ", repr(key)
-print "-----------------------------------------------------------------"
 print ''.join(chr(ord(a) ^ ord(b)) for a, b in zip(orig, cycle(key)))
