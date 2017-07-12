@@ -4,6 +4,7 @@ import binascii
 import re
 from itertools import cycle
 
+#Most common english letters
 letter_points = {
     'e' : 10,
     't' : 10,
@@ -23,12 +24,14 @@ letter_points = {
 def xor(string, key):
     return "".join(chr(ord(x) ^ ord(y)) for x, y in zip(string, cycle(key)))
 
+
 def score(string):
     score = 0
     for x in string:
         if x in letter_points:
             score += letter_points[x]
     return score 
+
 
 def get_decrypted(string):
     result = 0  
@@ -40,6 +43,7 @@ def get_decrypted(string):
             message = decoded 
     return (most_likely_key,result,message)
 
+
 most_likely_mess = ""
 max_score = 0
 most_likely_key = ""
@@ -50,10 +54,12 @@ for line in file:
         line = line[:-1]
     s = binascii.unhexlify(line)
     (curr_key,curr_score,curr_mess) = get_decrypted(s)
+    #get statistically most likely message and key
     if(curr_score > max_score ):
         most_likely_key = curr_key
         max_score = curr_score
         most_likely_mess = curr_mess
         
+
 print (most_likely_mess)
 print chr(most_likely_key)
