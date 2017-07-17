@@ -5,7 +5,6 @@ from random import randint
 from Crypto.Cipher import AES
 
 prepend_string = urandom(randint(1, 100))
-#print len(prepend_string)
 key = "".join([chr(randint(0, 255)) for byte in range(16)])
 orig = "Um9sbGluJyBpbiBteSA1LjAKV2l0aCBteSByYWctdG9wIGRvd24gc28gbXkgaGFpciBjYW4gYmxvdwpUaGUgZ2lybGllcyBvbiBzdGFuZGJ5IHdhdmluZyBqdXN0IHRvIHNheSBoaQpEaWQgeW91IHN0b3A/IE5vLCBJIGp1c3QgZHJvdmUgYnkK"
 block_size = 16
