@@ -1,6 +1,6 @@
 #sha1 implementation for challenge 29 - easier to use than challenge 28 code
 
-class Sha1(object):
+class Sha1Hash(object):
 
         #used for length extension attack
 	def __init__(self, initial_h=None):
