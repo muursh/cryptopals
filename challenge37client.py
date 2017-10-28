@@ -43,6 +43,14 @@ class Client:
         if msg[0] == 3:
             print(msg[1])
 
+
+def hmac256(key, *items):
+    h = hmac.new(key, digestmod='sha256')
+    data = b''.join(convert_to_bytes(items))
+    h.update(data)
+    return h.digest()
+
+
 class Network:
     def __init__(self, mitm=None):
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
