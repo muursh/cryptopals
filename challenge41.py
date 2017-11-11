@@ -1,4 +1,4 @@
-#cryptopals challenge 40
+#cryptopals challenge 41
 from Crypto.Util import number
 import random
 
