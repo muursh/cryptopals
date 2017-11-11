@@ -29,7 +29,7 @@ d = modinv(e, et)
 
 message = b'test'
 #convert message to an int for encryption
-m = int.from_bytes(b'y\xcc\xa6\xbb', byteorder='little')
+m = int.from_bytes(b'y\xcc\xa6\xbb', byteorder='big')
 
 #encrypt
 c = pow(m,e,n)
