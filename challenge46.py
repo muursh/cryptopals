@@ -1,6 +1,6 @@
 #cryptopals challenge 46
 
-import binascii
+import base64
 import random
 from Crypto.Util import number
 
@@ -25,7 +25,20 @@ et = (p-1) * (q-1)
 e = 3
 key = modinv(e, et)
 
-#encrypt message
-msg = "VGhhdCdzIHdoeSBJIGZvdW5kIHlvdSBkb24ndCBwbGF5IGFyb3VuZCB3aXRoIHRoZSBGdW5reSBDb2xkIE1lZGluYQ==".decode('base64')     
+#encrypt msg
+msg = int.from_bytes(base64.b64decode('VGhhdCdzIHdoeSBJIGZvdW5kIHlvdSBkb24ndCBwbGF5IGFyb3VuZCB3aXRoIHRoZSBGdW5reSBDb2xkIE1lZGluYQ=='), 'big')
 ct = pow(msg, e, n)
 
+#decode msg
+high = n
+low = 0
+for i in range (n.bit_length()):
+    diff = high-low
+    change = diff//2
+    ct = (pow(2, e, n) * ct) % n
+    if (pow(ct, key, n)%2 == 0):
+        high -= change
+    else:
+        low += change
+    print(high.to_bytes((high.bit_length() + 7) // 8, byteorder='big'))
+    
